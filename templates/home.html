@@ -5,9 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .main-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid black;
+        height: 100vh;
+        
+
+
+    }
+    .main-container .child-container b{
+        border-bottom: 1.5px dashed black;
+        color: blue;
+    }
+    .main-container .child-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-container textarea{
+        margin-top: 20px;
+        margin-bottom: 5px;
+        /* border: none; */
+    }
+    .predict{
+        background-color: rgb(0, 8, 255);
+        color: white;
+        border: none;
+        padding: 8px;
+        border-radius: 5px;
+
+    }
+    .predict:hover{
+        opacity: 0.7;
+    }
+
+    .output{
+        font-size: 19px;
+    }
+
+</style>
 <body>
 
-    hello world
+    <div class="main-container">
+        <div class="child-container">
+
+            <b>SMS/Email spam detection</b>
+            <form action="{{url_for('predict_api')}}" method="post">
+
+                <textarea name="input_sms" id="" cols="35" rows="10" placeholder="enter the message"></textarea>
+
+                <button type="submit" class="predict">Predict</button>
+
+            </form>
+        </div>
+        <div>
+            <p class="output">{{prediction_text}}</p>
+            
+        </div>
+    </div>
     
 </body>
 </html>

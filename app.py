@@ -23,7 +23,8 @@ def home():
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
-    data  = request.json['data']
+    data  = str(request.form.values())
+    print(data)
 
     def transform_text(text):
         text = text.lower()
@@ -51,10 +52,21 @@ def predict_api():
 
     vectors = vectorizer.transform([transform_data])
     ans = model.predict(vectors)
+    print(ans)
     if ans == 0:
-        return "Not Spam"
+        return render_template("home.html",prediction_text="Not Spam")
     else:
-        return "Spam"
+        return render_template("home.html",prediction_text=" Spam")
+    # if ans==0:
+    #     return "Not Spam"
+    # else:
+    #     return "Spam"
+
+@app.route("/predict",methods=['POST'])
+def predict():
+    data = [request.form.values()]
+    print(data)
+    
 
 
 
