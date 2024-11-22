@@ -10,6 +10,8 @@ from nltk.corpus import stopwords
 
 p = PorterStemmer()
 nltk.download('punkt_tab')
+nltk.download('stopwords')
+
 
 app = Flask(__name__)
 
